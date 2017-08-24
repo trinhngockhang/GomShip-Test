@@ -81,6 +81,7 @@ const listItemStyle={
   display: "block",
   padding: ".75rem 1.25rem",
   marginBottom: "-1px",
+  marginTop: "-1px",
   backgroundColor: "#fff",
   border: "1px solid rgba(0,0,0,.125)",
   borderRight: "0",
@@ -97,11 +98,28 @@ var Card = React.createClass({
     var that = this;
     return(
       <div>
-        <img src = {this.props.image} style={this.props.imageStyle}/>
-        <div style={this.props.cardBodyStyle}>
-          <h1 style={titleStyle}>{this.props.title}</h1>
-          <h2 style={subtitleStyle}>{this.props.subtitle}</h2>
-          <p>{this.props.description}</p>
+        {
+          this.props.image.map(function(image,index){
+          return    <img src = {image} style={that.props.imageStyle}/>
+          })
+        }
+
+          <div style={this.props.cardBodyStyle}>
+          {
+            this.props.title.map(function(title,index){
+            return    <h1 style={that.props.title}>{title}</h1>
+            })
+          }
+          {
+            this.props.subtitle.map(function(subtitle,index){
+            return    <h3 style={subtitleStyle}>{subtitle}</h3>
+            })
+          }
+          {
+            this.props.description.map(function(description,index){
+            return    <p>{description}</p>
+            })
+          }
           {
             this.props.link.map(function(note,index){
             return  <a  href={note.link} style={that.props.linkStyle}>{note.description}</a>
@@ -124,12 +142,12 @@ var Card = React.createClass({
 storiesOf('Card',module)
   .add('Example',() =>
   <div style={cardStyle}>
-    <Card image="https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"
-          subtitle="Subtitle"
-          title="Title"
+    <Card image={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+          subtitle={["Subtitle"]}
+          title={["Title"]}
           imageStyle={imageStyle}
           cardBodyStyle={cardBodyStyle}
-          description="This is a card"
+          description={["this's a description"]}
           link={[
             {link:"#",
              description:"This's link"
@@ -146,10 +164,11 @@ storiesOf('Card',module)
   .add('Card Title',() =>
   <div style={cardStyle}>
     <Card
+          image={[]}
           cardBodyStyle={cardBodyStyle}
-          subtitle="Subtitle"
-          title="Title"
-            description="Some quick example text to build on the card title and make up the bulk of the card's content."
+          subtitle={["Subtitle"]}
+          title={["Title"]}
+          description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
           link={[
             {link:"#",
              description:"link"
@@ -172,8 +191,10 @@ storiesOf('Card',module)
     <Card
           imageStyle={imageStyle}
           cardBodyStyle={cardBodyStyle}
-          image="https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"
-          description="Some quick example text to build on the card title and make up the bulk of the card's content."
+          image={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+          description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+          subtitle={[]}
+          title={[]}
           list={[]}
           link={[]}
           > </Card>
@@ -185,11 +206,14 @@ storiesOf('Card',module)
     .add('List Group',()=>
         <div style={cardStyle}>
             <Card
-
+              image={[]}
               list={['Cras justo odio','Dapibus ac facilisis in','Vestibulum at eros']}
               listGroupStyle={listGroupStyle}
               itemStyle={listItemStyle}
               link={[]}
+              subtitle={[]}
+              title={[]}
+              description={[]}
             > </Card>
           </div>
 
@@ -201,10 +225,10 @@ storiesOf('Card',module)
             <Card
                 imageStyle={imageStyle}
                 cardBodyStyle={cardBodyStyle}
-                image="https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"
-                subtitle="Subtitle"
-                title="Title"
-                description="Some quick example text to build on the card title and make up the bulk of the card's content."
+                image={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+                subtitle={["Subtitle"]}
+                title={["Title"]}
+                description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
                 list={['Cras justo odio','Dapibus ac facilisis in','Vestibulum at eros']}
                 listGroupStyle={listGroupStyle}
                 link={[]}
