@@ -3,237 +3,565 @@ import ReactDOM from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
-
+import {Card,Navigation} from '../src/components/Card.js';
 import { Button, Welcome } from '@storybook/react/demo';
-
-const cardStyle={
-    position:"relative",
-    flexdirection: "column",
-    minwidth: "0",
-    wordwrap: "break-word",
-    backgroundcolor: "#fff",
-    backgroundclip: "border-box",
-    border: "1px solid rgba(0,0,0,.125)",
-    borderRadius: ".25rem",
-    width:"318px"
-};
-const imageStyle={
-    width: "100%",
-    bordertopleftradius: "calc(.25rem - 1px)",
-    bordertoprightradius: "calc(.25rem - 1px)"
-};
-const cardBodyStyle={
-  margin: "0",
-  flex: "1 1 auto",
-  padding: "2.25rem",
-  fontsize: "1rem",
-  fontWeight: "400",
-  lineHeight: "1.0",
-  color: "#212529",
-  backgroundcolor: "#fff",
-  paddingTop:"0px",
-  paddingLeft:"-1px"
-
-};
-const titleStyle={
-  fontFamily: "inherit",
-  fontWeight: "500",
-  lineHeight: "1.1",
-  color:"inherit",
-  paddingTop:"0px"
-};
-const subtitleStyle={
-  color:"#868e96"
-};
-const btnStyle={
-  textDecoration:"none",
-  display: "inline-block",
-  fontweight: "400",
-  textalign: "center",
-  whitespace: "nowrap",
-  verticalAlign: "middle",
-  userselect: "none",
-  border: "1px solid transparent",
-  padding: ".5rem .75rem",
-  fontsize: "1rem",
-  lineheight: "1.25",
-  borderradius: ".25rem",
-  transition: "all .15s ease-in-out",
-  color: "#fff",
-  backgroundColor: "#007bff",
-  borderColor: "#007bff"
-};
-const linkStyle={
-  position:"relative",
-  textDecoration:"none",
-  marginLeft: "1.25rem",
-  color: "#007bff"
-}
-const listGroupStyle={
-
-  paddingLeft: "0",
-  marginBottom: "0",
-
-};
-
-const listItemStyle={
-  position: "relative",
-  display: "block",
-  padding: ".75rem 1.25rem",
-  marginBottom: "-1px",
-  marginTop: "-1px",
-  backgroundColor: "#fff",
-  border: "1px solid rgba(0,0,0,.125)",
-  borderRight: "0",
-  borderLeft: "0",
-  borderRadius: "0"
-};
-
-const remove={
-  display:"none"
-}
-
-var Card = React.createClass({
-  render(){
-    var that = this;
-    return(
-      <div>
-        {
-          this.props.image.map(function(image,index){
-          return    <img src = {image} style={that.props.imageStyle}/>
-          })
-        }
-
-          <div style={this.props.cardBodyStyle}>
-          {
-            this.props.title.map(function(title,index){
-            return    <h1 style={that.props.title}>{title}</h1>
-            })
-          }
-          {
-            this.props.subtitle.map(function(subtitle,index){
-            return    <h3 style={subtitleStyle}>{subtitle}</h3>
-            })
-          }
-          {
-            this.props.description.map(function(description,index){
-            return    <p>{description}</p>
-            })
-          }
-          {
-            this.props.link.map(function(note,index){
-            return  <a  href={note.link} style={that.props.linkStyle}>{note.description}</a>
-            })
-          }
-        </div>
-          <div style={this.props.listGroupStyle}>
-          {
-            this.props.list.map(function(note,index){
-            return <li style={that.props.itemStyle} key={index}> {note} </li>
-            })
-          }
-        </div>
-      </div>
-    )
-  }
-});
+import {Style} from '../src/Style/style.js';
 
 
-storiesOf('Card',module)
+storiesOf('Example',module)
   .add('Example',() =>
-  <div style={cardStyle}>
-    <Card image={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+  <div style={Style.cardStyle} >
+    <Card
+          header={[]}
+          imageTop={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
           subtitle={["Subtitle"]}
+          subtitleStyle={Style.subtitleStyle}
           title={["Title"]}
-          imageStyle={imageStyle}
-          cardBodyStyle={cardBodyStyle}
+          imageStyle={Style.imageStyle}
+          cardBodyStyle={Style.cardBodyStyle}
           description={["this's a description"]}
           link={[
-            {link:"#",
-             description:"This's link"
-            }
+          { link:"#",
+            description:"This's link"
+          }
           ]}
-          linkStyle={btnStyle}
+          linkStyle={Style.btnStyle}
           list={[]}
-          > </Card>
-
+          footer={[]}
+          imageBot={[]}
+    > </Card>
   </div>
 );
 
-storiesOf('Card',module)
+storiesOf('Content types',module)
   .add('Card Title',() =>
-  <div style={cardStyle}>
+  <div style={Style.cardStyle}>
     <Card
-          image={[]}
-          cardBodyStyle={cardBodyStyle}
+          header={[]}
+          imageTop={[]}
+          cardBodyStyle={Style.cardBodyStyle}
           subtitle={["Subtitle"]}
+          subtitleStyle={Style.subtitleStyle}
           title={["Title"]}
           description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
           link={[
-            {link:"#",
-             description:"link"
-           },
-           {
-             link:'#',
-             description:"another link"
-           }
+          {link:"#",
+           description:"link"
+          },
+          {
+            link:'#',
+            description:"another link"
+          }
           ]}
           list={[]}
-          linkStyle={linkStyle}
+          linkStyle={Style.linkStyle}
+          footer={[]}
+          imageBot={[]}
           > </Card>
 
   </div>
 );
 
-storiesOf('Card',module)
-  .add('Image',() =>
-  <div style={cardStyle}>
-    <Card
-          imageStyle={imageStyle}
-          cardBodyStyle={cardBodyStyle}
-          image={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
-          description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
-          subtitle={[]}
-          title={[]}
-          list={[]}
-          link={[]}
-          > </Card>
+storiesOf('Images',module)
+  .add('Image caps',() =>
+  <div>
+    <div style={Style.cardStyle}>
+      <Card
+            header={[]}
+            imageStyle={Style.imageStyle}
+            cardBodyStyle={Style.cardBodyStyle}
+            imageTop={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+            description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+            subtitle={[]}
+            title={[]}
+            list={[]}
+            link={[]}
+            footer={[]}
+            imageBot={[]}
+      > </Card>
+    </div>
+    <div style={Style.cardStyle}>
+      <Card
+            header={[]}
+            imageStyle={Style.imageStyle}
+            cardBodyStyle={Style.cardBodyStyle}
+            imageTop={[]}
+            description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+            subtitle={[]}
+            title={[]}
+            list={[]}
+            link={[]}
+            footer={[]}
+            imageBot={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+      > </Card>
+    </div>
   </div>
-);
-
-
-  storiesOf('Card',module)
-    .add('List Group',()=>
-        <div style={cardStyle}>
-            <Card
-              image={[]}
-              list={['Cras justo odio','Dapibus ac facilisis in','Vestibulum at eros']}
-              listGroupStyle={listGroupStyle}
-              itemStyle={listItemStyle}
-              link={[]}
-              subtitle={[]}
-              title={[]}
-              description={[]}
-            > </Card>
-          </div>
-
   );
 
-  storiesOf('Card',module)
+  storiesOf('Images',module)
+    .add('Image overplays',()=>
+    <div style={Style.cardStyle}>
+      <Card
+            header={[]}
+            imageStyle={Style.imageStyle}
+            cardBodyStyle={Style.cardBodyOverStyle}
+            imageTop={[]}
+            description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+            subtitle={[]}
+            title={[]}
+            list={[]}
+            link={[]}
+            footer={[]}
+            imageBot={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+      > </Card>
+    </div>
+  );
+
+  storiesOf('Content types',module)
+    .add('List Group',()=>
+      <div style={Style.cardStyle}>
+        <Card
+            header={[]}
+            imageTop={[]}
+            list={['Cras justo odio','Dapibus ac facilisis in','Vestibulum at eros']}
+            listGroupStyle={Style.listGroupStyle}
+            itemStyle={Style.listItemStyle}
+            link={[]}
+            subtitle={[]}
+            title={[]}
+            description={[]}
+            footer={[]}
+            imageBot={[]}
+        > </Card>
+      </div>
+    );
+
+  storiesOf('Content types',module)
     .add('Kitchen sink',()=>
-        <div style={cardStyle}>
+      <div style={Style.cardStyle}>
+        <Card
+              header={[]}
+              imageStyle={Style.imageStyle}
+              cardBodyStyle={Style.cardBodyStyle}
+              imageTop={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+              subtitle={["Subtitle"]}
+              subtitleStyle={Style.subtitleStyle}
+              title={["Title"]}
+              description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+              list={['Cras justo odio','Dapibus ac facilisis in','Vestibulum at eros']}
+              listGroupStyle={Style.listGroupStyle}
+              link={[]}
+              itemStyle={Style.listItemStyle}
+              footer={[]}
+              imageBot={[]}
+        > </Card>
+      </div>
+  );
+
+  storiesOf('Content types',module)
+    .add('Header and footer',()=>
+      <div style={Style.cardStyle}>
+        <Card
+              header={['Featured']}
+              navItemStyle={Style.headerStyle}
+              cardBodyStyle={Style.cardBodyCenterStyle}
+              subtitle={["Subtitle"]}
+              subtitleStyle={Style.subtitleStyle}
+              title={["Title"]}
+              description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+              list={[]}
+              link={[]}
+              imageTop={[]}
+              footer={["2 days ago"]}
+              footerStyle={Style.footerStyle}
+              imageBot={[]}
+        > </Card>
+      </div>
+    );
+
+  storiesOf('Navigation',module)
+    .add('Navigation',()=>
+      <div style={Style.cardStyle}>
+        <Navigation
+          head0="sub1"
+          head1="sub2"
+          head2="sub3"
+          title0="Title 1"
+          title1="Title 2"
+          title2="Title 3"
+          subtitle0="Subtitle 1"
+          subtitle1="Subtitle 2"
+          subtitle2="Subtitle 3"
+          description0="description 1"
+          description1="description 2"
+          description2="description 3"
+        ></Navigation>
+      </div>
+    );
+
+      storiesOf('Text Align',module)
+        .add('Text Align',() =>
+          <div>
+            <div style={Style.cardStyle}>
+              <Card
+                  header={[]}
+                  imageTop={[]}
+                  subtitle={["Subtitle"]}
+                  subtitleStyle={Style.subtitleStyle}
+                  title={["Title"]}
+                  imageStyle={Style.imageStyle}
+                  cardBodyStyle={Style.cardBodyStyle}
+                  description={["this's a description"]}
+                  link={[
+                    {link:"#",
+                      description:"This's link"
+                    }
+                  ]}
+                  linkStyle={Style.btnStyle}
+                  list={[]}
+                  footer={[]}
+                  imageBot={[]}
+              > </Card>
+          </div>
+          <div style={Style.cardStyle}>
             <Card
-                imageStyle={imageStyle}
-                cardBodyStyle={cardBodyStyle}
-                image={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+                header={[]}
+                imageTop={[]}
                 subtitle={["Subtitle"]}
+                subtitleStyle={Style.subtitleStyle}
+                title={["Title"]}
+                imageStyle={Style.imageStyle}
+                cardBodyStyle={Style.cardBodyCenterStyle}
+                description={["this's a description"]}
+                link={[
+                  {link:"#",
+                    description:"This's link"
+                  }
+                ]}
+                linkStyle={Style.btnStyle}
+                list={[]}
+                footer={[]}
+                imageBot={[]}
+            > </Card>
+            </div>
+            <div style={Style.cardStyle}>
+              <Card
+                  header={[]}
+                  imageTop={[]}
+                  subtitle={["Subtitle"]}
+                  subtitleStyle={Style.subtitleStyle}
+                  title={["Title"]}
+                  imageStyle={Style.imageStyle}
+                  cardBodyStyle={Style.cardBodyRightStyle}
+                  description={["this's a description"]}
+                  link={[
+                    {link:"#",
+                      description:"This's link"
+                    }
+                  ]}
+                  linkStyle={Style.btnStyle}
+                  list={[]}
+                  footer={[]}
+                  imageBot={[]}
+              > </Card>
+              </div>
+        </div>
+    );
+
+    storiesOf('Card Style',module)
+      .add('Background Color',()=>
+        <div>
+        <div style={{...Style.cardStyle,...Style.dangerBackground}}>
+            <Card
+                header={['Featured']}
+                navItemStyle={Style.headerStyle}
+                cardBodyStyle={Style.cardBodyCenterStyle}
                 title={["Title"]}
                 description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
-                list={['Cras justo odio','Dapibus ac facilisis in','Vestibulum at eros']}
-                listGroupStyle={listGroupStyle}
+                list={[]}
                 link={[]}
-                itemStyle={listItemStyle}
+                imageTop={[]}
+                footer={[]}
+                imageBot={[]}
+                subtitle={[]}
             > </Card>
           </div>
+          <div style={{...Style.cardStyle,...Style.primaryBackground}}>
+              <Card
+                  header={['Featured']}
+                  navItemStyle={Style.headerStyle}
+                  cardBodyStyle={Style.cardBodyCenterStyle}
+                  title={["Title"]}
+                  description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+                  list={[]}
+                  link={[]}
+                  imageTop={[]}
+                  footer={[]}
+                  imageBot={[]}
+                  subtitle={[]}
+              > </Card>
+          </div>
+            <div style={{...Style.cardStyle,...Style.secondaryBackground}}>
+                <Card
+                    header={['Featured']}
+                    navItemStyle={Style.headerStyle}
+                    cardBodyStyle={Style.cardBodyCenterStyle}
+                    title={["Title"]}
+                    description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+                    list={[]}
+                    link={[]}
+                    imageTop={[]}
+                    footer={[]}
+                    imageBot={[]}
+                    subtitle={[]}
+                > </Card>
+              </div>
+              <div style={{...Style.cardStyle,...Style.lightBackground}}>
+                  <Card
+                      header={['Featured']}
+                      navItemStyle={Style.headerStyle}
+                      subtitle={[]}
+                      cardBodyStyle={Style.cardBodyCenterStyle}
+                      title={["Title"]}
+                      description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+                      list={[]}
+                      link={[]}
+                      imageTop={[]}
+                      footer={[]}
+                      imageBot={[]}
+                  > </Card>
+                </div>
+        </div>
+    );
 
-  );
+  storiesOf('Card Style',module)
+    .add('Border',()=>
+      <div>
+      <div style={{...Style.cardStyle,...Style.primaryBorder}}>
+          <Card
+              header={['Featured']}
+              navItemStyle={Style.headerStyle}
+              subtitle={[]}
+              cardBodyStyle={Style.cardBodyCenterStyle}
+              title={["Title"]}
+              description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+              list={[]}
+              link={[]}
+              imageTop={[]}
+              footer={[]}
+              imageBot={[]}
+          > </Card>
+        </div>
+        <br/>
+        <div style={{...Style.cardStyle,...Style.dangerBorder}}>
+            <Card
+                header={['Featured']}
+                navItemStyle={Style.headerStyle}
+                subtitle={[]}
+                cardBodyStyle={Style.cardBodyCenterStyle}
+                title={["Title"]}
+                description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+                list={[]}
+                link={[]}
+                imageTop={[]}
+                footer={[]}
+                imageBot={[]}
+            > </Card>
+          </div>
+          <br/>
+          <div style={{...Style.cardStyle,...Style.successBorder}}>
+              <Card
+                  header={['Featured']}
+                  navItemStyle={Style.headerStyle}
+                  subtitle={[]}
+                  cardBodyStyle={Style.cardBodyCenterStyle}
+                  title={["Title"]}
+                  description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+                  list={[]}
+                  link={[]}
+                  imageTop={[]}
+                  footer={[]}
+                  imageBot={[]}
+              > </Card>
+            </div>
+            <br/>
+            <div style={{...Style.cardStyle,...Style.secondaryBorder}}>
+                <Card
+                    header={['Featured']}
+                    navItemStyle={Style.headerStyle}
+                    subtitle={[]}
+                    cardBodyStyle={Style.cardBodyCenterStyle}
+                    title={["Title"]}
+                    description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+                    list={[]}
+                    link={[]}
+                    imageTop={[]}
+                    footer={[]}
+                    imageBot={[]}
+                > </Card>
+              </div>
+      </div>
+    );
+
+    storiesOf('Card Style',module)
+      .add('Mixins utilities',()=>
+        <div>
+        <div style={{...Style.cardStyle,...Style.successBorder}}>
+            <Card
+                header={['Featured']}
+                navItemStyle={Style.headerSuccessStyle}
+                subtitle={[]}
+                cardBodyStyle={Style.cardBodyCenterStyle}
+                title={["Title"]}
+                description={["Some quick example text to build on the card title and make up the bulk of the card's content."]}
+                list={[]}
+                link={[]}
+                imageTop={[]}
+                footer={['Since 2017']}
+                footerStyle={Style.footerSuccessStyle}
+                imageBot={[]}
+            > </Card>
+          </div>
+        </div>
+    );
+
+    storiesOf('Card layout',module)
+      .add('Card groups',()=>
+        <div style={Style.layout} >
+          <div style={Style.cardStyle}>
+            <Card
+                  header={[]}
+                  imageTop={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+                  subtitle={["Subtitle"]}
+                  subtitleStyle={Style.subtitleStyle}
+                  title={["Title"]}
+                  imageStyle={Style.imageStyle}
+                  cardBodyStyle={Style.cardBodyStyle}
+                  description={["this's a description"]}
+                  link={[
+                    {link:"#",
+                     description:"This's link"
+                    }
+                  ]}
+                  linkStyle={Style.btnStyle}
+                  list={[]}
+                  footer={[]}
+                  imageBot={[]}
+                  > </Card>
+          </div>
+          <div style={Style.cardStyle}>
+            <Card
+                  header={[]}
+                  imageTop={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+                  subtitle={["Subtitle"]}
+                  subtitleStyle={Style.subtitleStyle}
+                  title={["Title"]}
+                  imageStyle={Style.imageStyle}
+                  cardBodyStyle={Style.cardBodyStyle}
+                  description={["this's a description"]}
+                  link={[
+                    {link:"#",
+                     description:"This's link"
+                    }
+                  ]}
+                  linkStyle={Style.btnStyle}
+                  list={[]}
+                  footer={[]}
+                  imageBot={[]}
+                  > </Card>
+          </div>
+          <div style={Style.cardStyle}>
+            <Card
+                  header={[]}
+                  imageTop={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+                  subtitle={["Subtitle"]}
+                  subtitleStyle={Style.subtitleStyle}
+                  title={["Title"]}
+                  imageStyle={Style.imageStyle}
+                  cardBodyStyle={Style.cardBodyStyle}
+                  description={["this's a description"]}
+                  link={[
+                    {link:"#",
+                     description:"This's link"
+                    }
+                  ]}
+                  linkStyle={Style.btnStyle}
+                  list={[]}
+                  footer={[]}
+                  imageBot={[]}
+                  > </Card>
+          </div>
+
+      </div>
+    );
+
+    storiesOf('Card layout',module)
+      .add('Card desks',()=>
+        <div style={Style.layout}>
+          <div style={{...Style.cardStyle,...Style.layoutDesks}}>
+            <Card
+                  header={[]}
+                  imageTop={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+                  subtitle={["Subtitle"]}
+                  subtitleStyle={Style.subtitleStyle}
+                  title={["Title"]}
+                  imageStyle={Style.imageStyle}
+                  cardBodyStyle={Style.cardBodyStyle}
+                  description={["this's a description"]}
+                  link={[
+                    {link:"#",
+                     description:"This's link"
+                    }
+                  ]}
+                  linkStyle={Style.btnStyle}
+                  list={[]}
+                  footer={[]}
+                  imageBot={[]}
+                  > </Card>
+          </div>
+          <br />
+          <div style={{...Style.cardStyle,...Style.layoutDesks}}>
+            <Card
+                  header={[]}
+                  imageTop={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+                  subtitle={["Subtitle"]}
+                  subtitleStyle={Style.subtitleStyle}
+                  title={["Title"]}
+                  imageStyle={Style.imageStyle}
+                  cardBodyStyle={Style.cardBodyStyle}
+                  description={["this's a description"]}
+                  link={[
+                    {link:"#",
+                     description:"This's link"
+                    }
+                  ]}
+                  linkStyle={Style.btnStyle}
+                  list={[]}
+                  footer={[]}
+                  imageBot={[]}
+                  > </Card>
+          </div>
+          <br />
+            <div style={{...Style.cardStyle,...Style.layoutDesks}}>
+            <Card
+                  header={[]}
+                  imageTop={["https://lh3.googleusercontent.com/iOi6YJxQwMenT5UQWGPWTrFMQFm68IC4uKlFtARveZzVD5lTZ7fC47_rnnF7Tk48DpY=w300"]}
+                  subtitle={["Subtitle"]}
+                  subtitleStyle={Style.subtitleStyle}
+                  title={["Title"]}
+                  imageStyle={Style.imageStyle}
+                  cardBodyStyle={Style.cardBodyStyle}
+                  description={["this's a description"]}
+                  link={[
+                    {link:"#",
+                     description:"This's link"
+                    }
+                  ]}
+                  linkStyle={Style.btnStyle}
+                  list={[]}
+                  footer={[]}
+                  imageBot={[]}
+                  > </Card>
+          </div>
+        </div>
+    );
